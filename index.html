@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magen Sathivan - Personal Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Dark Blue-Gray Background */
+            color: #E5E7EB; /* Light Gray Text */
+        }
+        .navbar {
+            background-color: rgba(17, 24, 39, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #F9FAFB; /* Off-white title */
+            margin-bottom: 2.5rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #38BDF8; /* Sky Blue */
+            border-radius: 2px;
+        }
+        .card {
+            background-color: #1F2937; /* Darker card background */
+            border: 1px solid #374151; /* Gray border */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 20px rgba(56, 189, 248, 0.4);
+        }
+        .progress-bar-container {
+            background-color: #374151;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            height: 10px;
+        }
+        .progress-bar {
+            background-color: #38BDF8;
+            height: 100%;
+            transition: width 2s ease-in-out;
+            width: 0;
+        }
+        .btn-primary {
+            background-color: #38BDF8;
+            color: #111827;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .btn-primary:hover {
+            background-color: #0EA5E9;
+            transform: scale(1.05);
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #374151;
+        }
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 20px 40px;
+            box-sizing: border-box;
+        }
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 60px;
+        }
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 60px;
+        }
+        .timeline-content {
+            padding: 20px;
+            background: #1F2937;
+            border-radius: 8px;
+            position: relative;
+            border: 1px solid #374151;
+        }
+        .timeline-icon {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            background: #111827;
+            border-radius: 50%;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #38BDF8;
+        }
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 28px;
+            right: -15px;
+            border-width: 8px;
+            border-style: solid;
+            border-color: transparent transparent transparent #1F2937;
+        }
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 28px;
+            left: -15px;
+            border-width: 8px;
+            border-style: solid;
+            border-color: transparent #1F2937 transparent transparent;
+        }
+        .project-tag {
+            background-color: #374151;
+            color: #D1D5DB;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+        }
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 25px;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 20px;
+            }
+            .timeline-item:nth-child(even) {
+                left: 0%;
+                padding-left: 70px;
+            }
+            .timeline-icon {
+                left: 25px;
+            }
+            .timeline-item:nth-child(odd) .timeline-content::after,
+            .timeline-item:nth-child(even) .timeline-content::after {
+                left: -15px;
+                border-color: transparent #1F2937 transparent transparent;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navbar -->
+    <header id="home" class="relative">
+        <nav class="navbar fixed top-0 left-0 right-0 z-50">
+            <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold text-white">M.S.</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-sky-400 transition">Home</a>
+                    <a href="#about" class="text-gray-300 hover:text-sky-400 transition">About</a>
+                    <a href="#experience" class="text-gray-300 hover:text-sky-400 transition">Experience</a>
+                    <a href="#skills" class="text-gray-300 hover:text-sky-400 transition">Skills</a>
+                    <a href="#education" class="text-gray-300 hover:text-sky-400 transition">Education</a>
+                    <a href="#projects" class="text-gray-300 hover:text-sky-400 transition">Projects</a>
+                    <a href="#achievements" class="text-gray-300 hover:text-sky-400 transition">Achievements</a>
+                    <a href="#contact" class="text-gray-300 hover:text-sky-400 transition">Contact</a>
+                </div>
+                <button id="mobile-menu-button" class="md:hidden text-gray-300 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden">
+                <a href="#home" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">Home</a>
+                <a href="#about" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">About</a>
+                <a href="#experience" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">Experience</a>
+                <a href="#skills" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">Skills</a>
+                <a href="#education" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">Education</a>
+                <a href="#projects" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">Projects</a>
+                <a href="#achievements" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">Achievements</a>
+                <a href="#contact" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">Contact</a>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <div class="min-h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop');">
+            <div class="absolute inset-0 bg-black opacity-60"></div>
+            <div class="relative text-center text-white px-4">
+                <img src="https://placehold.co/150x150/38BDF8/FFFFFF?text=MS" alt="Magen Sathivan" class="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-sky-400 shadow-lg">
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-2">Magen Sathivan</h1>
+                <p class="text-xl md:text-2xl font-light mb-8">Undergraduate in <span id="typing-text" class="font-semibold text-sky-300"></span></p>
+                <a href="#contact" class="btn-primary py-3 px-8 rounded-full text-lg">Get In Touch</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- About Me Section -->
+        <section id="about" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">About Me</h2>
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="md:w-2/3 text-lg text-center md:text-left">
+                        <p class="mb-4">A motivated and analytical student seeking full-time placement to gain practical experience in corporate environments. With a strong foundation in mathematics and problem-solving, I am eager to apply my skills in areas such as data analysis, financial modeling, and machine learning modelling.</p>
+                        <p>Passionate about leveraging theoretical knowledge to address real-world challenges in sectors like finance, operations, and technology.</p>
+                    </div>
+                    <div class="md:w-1/3">
+                        <div class="card p-6 rounded-lg">
+                            <h3 class="text-xl font-bold mb-4 text-white">Key Competencies</h3>
+                            <ul class="space-y-2 text-gray-300">
+                                <li class="flex items-center"><i class="fas fa-check-circle text-sky-400 mr-3"></i>Abstract Thinking</li>
+                                <li class="flex items-center"><i class="fas fa-check-circle text-sky-400 mr-3"></i>Adaptability</li>
+                                <li class="flex items-center"><i class="fas fa-check-circle text-sky-400 mr-3"></i>Analytical Thinking</li>
+                                <li class="flex items-center"><i class="fas fa-check-circle text-sky-400 mr-3"></i>Communication</li>
+                                <li class="flex items-center"><i class="fas fa-check-circle text-sky-400 mr-3"></i>Problem-Solving</li>
+                                <li class="flex items-center"><i class="fas fa-check-circle text-sky-400 mr-3"></i>Team Leadership</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Professional Experience Section -->
+        <section id="experience" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Professional Experience</h2>
+                <div class="relative timeline">
+                    <div class="timeline-icon"><i class="fas fa-briefcase text-2xl text-sky-400"></i></div>
+                    <!-- Timeline Item 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-content card">
+                            <h3 class="text-xl font-bold text-sky-400">Research Assistant - Machine Learning</h3>
+                            <p class="text-sm text-gray-400 mb-2">Universiti Malaya | 2025</p>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                <li>Assist in the design, development, and evaluation of machine learning models for research-based projects, focusing on real-world data applications.</li>
+                                <li>Conduct data preprocessing, feature engineering, and exploratory data analysis (EDA) to prepare high-quality datasets for model training.</li>
+                                <li>Perform model validation and optimization through techniques such as cross-validation, hyperparameter tuning, and performance metrics evaluation.</li>
+                                <li>Document experimental results, maintain detailed records of methodologies, and contribute to the preparation of research publications or technical reports.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Timeline Item 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-content card">
+                            <h3 class="text-xl font-bold text-sky-400">Mathematics Teacher (Intern)</h3>
+                            <p class="text-sm text-gray-400 mb-2">SMK Sultan Abdul Samad | 2024</p>
+                            <ul class="list-disc list-inside text-gray-300 space-y-1">
+                                <li>Developed and implemented engaging lesson plans.</li>
+                                <li>Utilized various teaching methods and technologies.</li>
+                                <li>Collaborated with colleagues to improve student outcomes.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Timeline Item 3 -->
+                    <div class="timeline-item">
+                        <div class="timeline-content card">
+                            <h3 class="text-xl font-bold text-sky-400">Retail Sales Associate</h3>
+                            <p class="text-sm text-gray-400 mb-2">TW Petroleum Caltex Labis | 2021</p>
+                            <ul class="list-disc list-inside text-gray-300 space-y-1">
+                                <li>Maintained comprehensive product knowledge.</li>
+                                <li>Worked collaboratively to meet sales targets.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-4 text-white">Programming Languages</h3>
+                        <div class="mb-4">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-base font-medium text-gray-300">Python</span>
+                                <span class="text-sm font-medium text-gray-400">Advanced</span>
+                            </div>
+                            <div class="progress-bar-container"><div class="progress-bar" data-width="90%"></div></div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-base font-medium text-gray-300">Java</span>
+                                <span class="text-sm font-medium text-gray-400">Intermediate</span>
+                            </div>
+                            <div class="progress-bar-container"><div class="progress-bar" data-width="75%"></div></div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-base font-medium text-gray-300">C++</span>
+                                <span class="text-sm font-medium text-gray-400">Intermediate</span>
+                            </div>
+                            <div class="progress-bar-container"><div class="progress-bar" data-width="70%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-base font-medium text-gray-300">R</span>
+                                <span class="text-sm font-medium text-gray-400">Intermediate</span>
+                            </div>
+                            <div class="progress-bar-container"><div class="progress-bar" data-width="65%"></div></div>
+                        </div>
+                    </div>
+                    <div class="card p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-4 text-white">Tools & Technologies</h3>
+                        <div class="mb-4">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-base font-medium text-gray-300">Machine Learning (Supervised & Unsupervised)</span>
+                            </div>
+                            <div class="progress-bar-container"><div class="progress-bar" data-width="85%"></div></div>
+                        </div>
+                         <div class="mb-4">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-base font-medium text-gray-300">Data Visualization (Matplotlib, Seaborn)</span>
+                            </div>
+                            <div class="progress-bar-container"><div class="progress-bar" data-width="80%"></div></div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-base font-medium text-gray-300">MATLAB</span>
+                            </div>
+                            <div class="progress-bar-container"><div class="progress-bar" data-width="75%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-base font-medium text-gray-300">Microsoft Office Suite</span>
+                            </div>
+                            <div class="progress-bar-container"><div class="progress-bar" data-width="95%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Education</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-sky-400">Bachelor of Science in Mathematics with Education</h3>
+                        <p class="text-gray-400">Universiti Malaya | Aug 2021 - Present</p>
+                        <ul class="mt-4 space-y-2 text-gray-300">
+                            <li><i class="fas fa-award text-yellow-400 mr-2"></i>Dean's Award Receiver for 4 Semesters</li>
+                            <li><i class="fas fa-graduation-cap text-yellow-400 mr-2"></i>CGPA: 3.74 (Latest Semester GPA: 3.94)</li>
+                        </ul>
+                    </div>
+                    <div class="card p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-sky-400">Foundation in Computer Science</h3>
+                        <p class="text-gray-400">Melacca Matriculation College | Aug 2020 - May 2021</p>
+                         <ul class="mt-4 space-y-2 text-gray-300">
+                            <li><i class="fas fa-graduation-cap text-yellow-400 mr-2"></i>CGPA: 4.00</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Projects Section -->
+        <section id="projects" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">My Project</h2>
+                <div class="max-w-4xl mx-auto">
+                    <div class="card rounded-lg overflow-hidden flex flex-col md:flex-row">
+                        <img src="https://placehold.co/600x400/1F2937/FFFFFF?text=Project" alt="Pavement Optimization Project" class="w-full md:w-1/3 h-auto object-cover">
+                        <div class="p-6 md:p-8 flex flex-col justify-center">
+                            <h3 class="text-2xl font-bold text-white mb-3">Hybrid Machine Learning Model for Pavement Component Optimization</h3>
+                            <p class="text-gray-400 mb-4">A collaborative project with MBPJ and Universiti Malaya to develop a predictive model for optimizing pavement composition. This model focuses on substituting cement with glass waste, aiming for more sustainable and cost-effective infrastructure solutions.</p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="project-tag">Machine Learning</span>
+                                <span class="project-tag">Python</span>
+                                <span class="project-tag">Sustainability</span>
+                                <span class="project-tag">Civil Engineering</span>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                               <a href="#" class="text-sky-400 hover:text-sky-300 font-semibold">View Details <i class="fas fa-arrow-right ml-1"></i></a>
+                               <span class="text-gray-500">|</span>
+                               <p class="text-sm text-gray-500">In collaboration with: MBPJ & UM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Achievements & Positions</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card p-6 rounded-lg">
+                        <div class="text-4xl text-sky-400 mb-4"><i class="fas fa-trophy"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">Maybank Scholarship 2022</h3>
+                        <p class="text-gray-400">Awarded for academic excellence and potential.</p>
+                    </div>
+                    <div class="card p-6 rounded-lg">
+                        <div class="text-4xl text-sky-400 mb-4"><i class="fas fa-user-shield"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">Voluntary Inspector of Polis Diraja Malaysia</h3>
+                        <p class="text-gray-400">Commissioned upon completion of 3-year KOR SUKSIS training.</p>
+                    </div>
+                    <div class="card p-6 rounded-lg">
+                        <div class="text-4xl text-sky-400 mb-4"><i class="fas fa-store"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">"Be Your Own Boss" Programme 2023</h3>
+                        <p class="text-gray-400">Winning team, ran the Paradigm Mall Vanilla Mille Crepe outlet.</p>
+                    </div>
+                    <div class="card p-6 rounded-lg">
+                        <div class="text-4xl text-sky-400 mb-4"><i class="fas fa-calculator"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">Kangaroo Math Intermatriculation 2021</h3>
+                        <p class="text-gray-400">Secured third place in the competition.</p>
+                    </div>
+                    <div class="card p-6 rounded-lg">
+                        <div class="text-4xl text-sky-400 mb-4"><i class="fas fa-user-tie"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">Vice Secretary - Sekretariat Rakan Muda 2023</h3>
+                        <p class="text-gray-400">Handled documentation, member lists, and budget tracking.</p>
+                    </div>
+                    <div class="card p-6 rounded-lg">
+                        <div class="text-4xl text-sky-400 mb-4"><i class="fas fa-dollar-sign"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">Assistant Treasurer - UMMA 2022</h3>
+                        <p class="text-gray-400">Oversaw fee collection and managed club finances.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Contact Me</h2>
+                <div class="max-w-lg mx-auto text-center">
+                    <p class="text-lg mb-8">I'm currently seeking new opportunities. Feel free to reach out if you have any questions or just want to connect!</p>
+                    <div class="flex justify-center items-center space-x-6 text-2xl">
+                        <a href="mailto:magenmagen0809@gmail.com" class="text-gray-400 hover:text-sky-400 transition duration-300"><i class="fas fa-envelope"></i> magenmagen0809@gmail.com</a>
+                    </div>
+                     <div class="flex justify-center items-center space-x-6 text-2xl mt-4">
+                        <a href="tel:+601110844542" class="text-gray-400 hover:text-sky-400 transition duration-300"><i class="fas fa-phone"></i> +60 11-1084 4542</a>
+                    </div>
+                    <div class="flex justify-center items-center space-x-6 text-3xl mt-8">
+                        <a href="https://www.linkedin.com/in/magen-sathivan/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-sky-400 transition duration-300"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800">
+        <div class="container mx-auto px-6 py-6 text-center text-gray-500">
+            <p>&copy; 2024 Magen Sathivan. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Typing animation
+        const typingText = document.getElementById('typing-text');
+        const textToType = "B.Sc Maths with Education.";
+        let index = 0;
+
+        function type() {
+            if (index < textToType.length) {
+                typingText.textContent += textToType.charAt(index);
+                index++;
+                setTimeout(type, 100);
+            } else {
+                // Optional: Reset and restart animation
+                setTimeout(() => {
+                    index = 0;
+                    typingText.textContent = '';
+                    type();
+                }, 3000); // Wait 3 seconds before restarting
+            }
+        }
+        
+        // Start typing animation when the page loads
+        document.addEventListener('DOMContentLoaded', (event) => {
+            setTimeout(type, 1000);
+        });
+        
+        // Animate elements on scroll
+        const animatedElements = document.querySelectorAll('.progress-bar, .card, .timeline-item');
+        
+        const animateOnScroll = () => {
+            animatedElements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (elementTop < windowHeight - 50) {
+                    if(el.classList.contains('progress-bar')) {
+                        el.style.width = el.dataset.width;
+                    }
+                    el.classList.add('fade-in-up');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', animateOnScroll);
+        // Also run on load in case elements are already visible
+        animateOnScroll();
+
+        // Add fade-in-up animation style
+        const style = document.createElement('style');
+        style.innerHTML = `
+            .fade-in-up {
+                opacity: 0;
+                transform: translateY(20px);
+                animation: fadeInUp 0.8s ease-out forwards;
+            }
+            @keyframes fadeInUp {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+
+    </script>
+
+</body>
+</html>
